@@ -1239,8 +1239,8 @@
       }
     },
     "test/Operations.t.sol": {
-      "lastModificationDate": 1697765656524,
-      "contentHash": "f587c4ae0e0c2477d4663cfdef311150",
+      "lastModificationDate": 1697765679795,
+      "contentHash": "b8acabcc8522f1807121ade3665785f1",
       "sourceName": "test/Operations.t.sol",
       "solcConfig": {
         "settings": {

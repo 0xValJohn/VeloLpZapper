@@ -42,7 +42,7 @@ contract VeloLpZapper is Ownable {
     /* ========== MUTATIVE FUNCTIONS ========== */
 
     function addPair(address _lpToken, address _beefyVault, address _yearnVault) external onlyApproved {
-        require(IBeefyVault(_beefyVault).want() == IYearnVault(_yearnVault).token(), "lp token doesn't match");
+        require(IBeefyVault(_beefyVault).want() == IYearnVault(_yearnVault).token(), "lp token does not match");
         pairs[_lpToken][0] = _beefyVault;
         pairs[_lpToken][1] = _yearnVault;
 
