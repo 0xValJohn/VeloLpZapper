@@ -1167,8 +1167,8 @@
       }
     },
     "src/VeloLpZapper.sol": {
-      "lastModificationDate": 1697810930014,
-      "contentHash": "6ebe66523db922d4f448c4843f3a2271",
+      "lastModificationDate": 1697814755412,
+      "contentHash": "e58dc8e15db2fd5befe928f8e1cdf33a",
       "sourceName": "src/VeloLpZapper.sol",
       "solcConfig": {
         "settings": {
@@ -1239,14 +1239,17 @@
         "IYearnVault": {
           "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/IYearnVault.json"
         },
+        "IZap": {
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/IZap.json"
+        },
         "VeloLpZapper": {
           "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/VeloLpZapper.json"
         }
       }
     },
     "test/Operations.t.sol": {
-      "lastModificationDate": 1697810888217,
-      "contentHash": "3b22405c490292f5fdeb599f73bde2bf",
+      "lastModificationDate": 1697814807190,
+      "contentHash": "73d2e35b8087959a58ee9d8788d2cd3f",
       "sourceName": "test/Operations.t.sol",
       "solcConfig": {
         "settings": {

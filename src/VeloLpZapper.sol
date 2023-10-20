@@ -24,6 +24,11 @@ interface IStakingRewards {
     function stakeFor(address recipient, uint256 amount) external;
 }
 
+interface IZap {
+    function stakingPoolRegistry() external view returns (address);
+    function zapIn(address _targetVault, uint256 _underlyingAmount) external returns (uint256);
+}
+
 contract VeloLpZapper is Ownable {
     using SafeERC20 for IERC20;
 
@@ -32,8 +37,8 @@ contract VeloLpZapper is Ownable {
     /// @notice LP tokens that the registry has added pairs for.
     address[] public lpTokens;
 
-    /// @notice Address of our staking pool registry.
-    address public stakingPoolRegistry;
+    /// @notice Our OP boost zap contract.
+    IZap public boostZapContract;
 
     /// @notice If a beefy-vault/yearn-vault pair exists for a given token, it will be shown here.
     mapping(address => address[2]) public pairs;
@@ -50,12 +55,12 @@ contract VeloLpZapper is Ownable {
     event PairAdded(address indexed lpToken, address beefyVault, address yearnVault);
     event Recovered(address token, uint256 amount);
     event ApprovedPairEndorser(address account, bool canEndorse);
-    event UpdatedPoolRegistry(address registry);
+    event UpdatedZapper(address zapper);
 
     /* ========== CONSTRUCTOR ========== */
 
-    constructor(address _stakingPoolRegistry) {
-        stakingPoolRegistry = _stakingPoolRegistry;
+    constructor(address _boostZapContract) {
+        boostZapContract = IZap(_boostZapContract);
     }
 
     /* ========== MODIFIERS ========== */
@@ -109,19 +114,17 @@ contract VeloLpZapper is Ownable {
 
         // withdraw all from beefy to lp token
         IBeefyVault(pair[0]).withdrawAll();
-
-        // deposit to lp token yearn
         uint256 lpBalance = IERC20(_lpToken).balanceOf(address(this));
-        _checkAllowance(pair[1], address(_lpToken), lpBalance);
-        IYearnVault(pair[1]).deposit();
 
-        // look-up OP boost registry, to see if we need to stake
-        IRegistry poolRegistry = IRegistry(stakingPoolRegistry);
-        address _vaultStakingPool = poolRegistry.stakingPool(pair[1]);
-
+        // look-up OP boost registry, check if we need to stake
+        address _vaultStakingPool = IRegistry(boostZapContract.stakingPoolRegistry()).stakingPool(pair[1]);
 
         // no need to stake
         if (_vaultStakingPool == address(0)) {
+            // deposit to lp token yearn
+            _checkAllowance(pair[1], address(_lpToken), lpBalance);
+            IYearnVault(pair[1]).deposit();
+
             // transfer vault token back to msg.sender
             uint256 _toTransfer = yearnToken.balanceOf((address(this)));
             yearnToken.safeTransfer(msg.sender, _toTransfer);
@@ -129,18 +132,9 @@ contract VeloLpZapper is Ownable {
 
         // the vault is boosted, need to stake
         } else {
-            IYearnVault targetVault = IYearnVault(pair[1]);
-            IStakingRewards vaultStakingPool = IStakingRewards(_vaultStakingPool);
-
-            // read staking contract from registry, then deposit to that staking contract
-            uint256 _toStake = targetVault.balanceOf(address(this));
-
-            // make sure we have approved the staking pool, as they can be added/updated at any time
-            _checkAllowance(_vaultStakingPool, pair[1], _toStake);
-
-            // stake for our user, return the amount we staked
-            vaultStakingPool.stakeFor(msg.sender, _toStake);
-            emit ZapIn(msg.sender, pair[1], _toStake, true);
+            _checkAllowance(address(boostZapContract), _lpToken, lpBalance);
+            boostZapContract.zapIn(pair[1], lpBalance);
+            emit ZapIn(msg.sender, pair[1], lpBalance, true);
         }
     }
 
@@ -173,10 +167,10 @@ contract VeloLpZapper is Ownable {
     /**
      * @notice Set the registry for pulling our staking pools.
      * @dev Throws if caller is not owner.
-     * @param _stakingPoolRegistry The address to use as pool registry.
+     * @param _boostZapContract The address to use as pool registry.
      */
-    function setPoolRegistry(address _stakingPoolRegistry) external onlyOwner {
-        stakingPoolRegistry = _stakingPoolRegistry;
-        emit UpdatedPoolRegistry(_stakingPoolRegistry);
+    function setZapper(address _boostZapContract) external onlyOwner {
+        boostZapContract = IZap(_boostZapContract);
+        emit UpdatedZapper(_boostZapContract);
     }
 }

@@ -31,13 +31,13 @@ contract CounterTest is Test {
     address public aleth_weth_yearn = 0xf7D66b41Cd4241eae450fd9D2d6995754634D9f3;
     address public aleth_weth_moo_whale = 0xc47faE56f3702737B69ed615950c01217ec5C7C8;
 
-    address public pool_registry = 0x8ED9F6343f057870F1DeF47AaE7CD88dfAA049A8;
+    address public boost_zap_contract = 0x498d9dCBB1708e135bdc76Ef007f08CBa4477BE2;
 
     address public user = address(10);
     address public management = address(0);
     
     function setUp() public {
-        zapper = new VeloLpZapper(pool_registry);
+        zapper = new VeloLpZapper(boost_zap_contract);
         zapper.setPairEndorser(address(this), true);
 
         zapper.addPair(
@@ -70,7 +70,7 @@ contract CounterTest is Test {
         vm.startPrank(aleth_weth_moo_whale);
         IERC20(aleth_weth_beefy).safeApprove(address(zapper), type(uint256).max);
         zapper.zap(aleth_weth_lp);
-        IYearnVault(aleth_weth_yearn).withdraw();
+        // IYearnVault(aleth_weth_yearn).withdraw();
         // uint256 _valueAfter = IERC20(aleth_weth_lp).balanceOf(aleth_weth_moo_whale);
         // console2.log("_valueBefore", _valueBefore);
         // console2.log("_valueAfter", _valueAfter);
