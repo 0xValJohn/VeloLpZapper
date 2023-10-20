@@ -1167,8 +1167,8 @@
       }
     },
     "src/VeloLpZapper.sol": {
-      "lastModificationDate": 1697765093716,
-      "contentHash": "70756cad3c8b7cf413ae4fb81fe611e1",
+      "lastModificationDate": 1697809244435,
+      "contentHash": "5b793abdf1847df1bd32f394648365bb",
       "sourceName": "src/VeloLpZapper.sol",
       "solcConfig": {
         "settings": {
@@ -1230,6 +1230,12 @@
         "IBeefyVault": {
           "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/IBeefyVault.json"
         },
+        "IRegistry": {
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/IRegistry.json"
+        },
+        "IStakingRewards": {
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/IStakingRewards.json"
+        },
         "IYearnVault": {
           "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/IYearnVault.json"
         },
@@ -1239,8 +1245,8 @@
       }
     },
     "test/Operations.t.sol": {
-      "lastModificationDate": 1697765679795,
-      "contentHash": "b8acabcc8522f1807121ade3665785f1",
+      "lastModificationDate": 1697809242808,
+      "contentHash": "a515915578afc66d919661ca9d171438",
       "sourceName": "test/Operations.t.sol",
       "solcConfig": {
         "settings": {

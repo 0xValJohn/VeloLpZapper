@@ -23,12 +23,13 @@ contract CounterTest is Test {
     address public stg_usdc_beefy = 0xD09B5a0650d68Aae6B1666eE5E770a383d29A97C;
     address public stg_usdc_yearn = 0xf6B272134A193Df5b04332e73184E5b40b8EB810;
     address public moo_whale = 0xED8886F9B87F06bF7AB1a4897881bd83eCF1f52E;
+    address public pool_registry = 0x8ED9F6343f057870F1DeF47AaE7CD88dfAA049A8;
 
     address public user = address(10);
     address public management = address(0);
     
     function setUp() public {
-        zapper = new VeloLpZapper();
+        zapper = new VeloLpZapper(pool_registry);
         zapper.setPairEndorser(address(this), true);
 
         zapper.addPair(
