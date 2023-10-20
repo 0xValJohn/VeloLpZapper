@@ -103,7 +103,7 @@ contract VeloLpZapper is Ownable {
         IERC20 yearnToken = IERC20(pair[1]);
 
         // transfer moo token to zap contract
-        uint256 mooBalance = mooToken.balanceOf(msg.sender);
+        uint256 mooBalance = mooToken.balanceOf(msg.sender); // @issue here!!!
         _checkAllowance(pair[0], address(mooToken), mooBalance);
         mooToken.transferFrom(msg.sender, address(this), mooBalance);
 
@@ -119,14 +119,15 @@ contract VeloLpZapper is Ownable {
         IRegistry poolRegistry = IRegistry(stakingPoolRegistry);
         address _vaultStakingPool = poolRegistry.stakingPool(pair[1]);
 
+
         // no need to stake
-        if (_vaultStakingPool != address(0)) {
+        if (_vaultStakingPool == address(0)) {
             // transfer vault token back to msg.sender
             uint256 _toTransfer = yearnToken.balanceOf((address(this)));
             yearnToken.safeTransfer(msg.sender, _toTransfer);
             emit ZapIn(msg.sender, pair[1], _toTransfer, false);
 
-            // the vault is boosted, need to stake
+        // the vault is boosted, need to stake
         } else {
             IYearnVault targetVault = IYearnVault(pair[1]);
             IStakingRewards vaultStakingPool = IStakingRewards(_vaultStakingPool);

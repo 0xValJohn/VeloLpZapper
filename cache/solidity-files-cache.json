@@ -1167,8 +1167,8 @@
       }
     },
     "src/VeloLpZapper.sol": {
-      "lastModificationDate": 1697809244435,
-      "contentHash": "5b793abdf1847df1bd32f394648365bb",
+      "lastModificationDate": 1697810930014,
+      "contentHash": "6ebe66523db922d4f448c4843f3a2271",
       "sourceName": "src/VeloLpZapper.sol",
       "solcConfig": {
         "settings": {
@@ -1245,8 +1245,8 @@
       }
     },
     "test/Operations.t.sol": {
-      "lastModificationDate": 1697809242808,
-      "contentHash": "a515915578afc66d919661ca9d171438",
+      "lastModificationDate": 1697810888217,
+      "contentHash": "3b22405c490292f5fdeb599f73bde2bf",
       "sourceName": "test/Operations.t.sol",
       "solcConfig": {
         "settings": {
