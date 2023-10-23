@@ -102,61 +102,6 @@
         }
       }
     },
-    "lib/forge-std/src/Script.sol": {
-      "lastModificationDate": 1697753468970,
-      "contentHash": "ba325c778a7da8a21c2136aa32763c14",
-      "sourceName": "lib/forge-std/src/Script.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "useLiteralContent": false,
-            "bytecodeHash": "ipfs",
-            "appendCBOR": true
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ]
-            }
-          },
-          "evmVersion": "paris",
-          "libraries": {}
-        }
-      },
-      "imports": [
-        "lib/forge-std/src/Base.sol",
-        "lib/forge-std/src/StdChains.sol",
-        "lib/forge-std/src/StdCheats.sol",
-        "lib/forge-std/src/StdJson.sol",
-        "lib/forge-std/src/StdMath.sol",
-        "lib/forge-std/src/StdStorage.sol",
-        "lib/forge-std/src/StdStyle.sol",
-        "lib/forge-std/src/StdUtils.sol",
-        "lib/forge-std/src/Vm.sol",
-        "lib/forge-std/src/console.sol",
-        "lib/forge-std/src/console2.sol",
-        "lib/forge-std/src/interfaces/IMulticall3.sol",
-        "lib/forge-std/src/safeconsole.sol"
-      ],
-      "versionRequirement": ">=0.6.2, <0.9.0",
-      "artifacts": {
-        "Script": {
-          "0.8.21+commit.d9974bed.Darwin.appleclang": "Script.sol/Script.json"
-        }
-      }
-    },
     "lib/forge-std/src/StdAssertions.sol": {
       "lastModificationDate": 1697753468970,
       "contentHash": "6cc2858240bcd443debbbf075490e325",
@@ -1110,66 +1055,10 @@
         }
       }
     },
-    "script/Counter.s.sol": {
-      "lastModificationDate": 1697753468262,
-      "contentHash": "7539680fbd3ad49c6632713cc2bb6bf6",
-      "sourceName": "script/Counter.s.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "useLiteralContent": false,
-            "bytecodeHash": "ipfs",
-            "appendCBOR": true
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ]
-            }
-          },
-          "evmVersion": "paris",
-          "libraries": {}
-        }
-      },
-      "imports": [
-        "lib/forge-std/src/Base.sol",
-        "lib/forge-std/src/Script.sol",
-        "lib/forge-std/src/StdChains.sol",
-        "lib/forge-std/src/StdCheats.sol",
-        "lib/forge-std/src/StdJson.sol",
-        "lib/forge-std/src/StdMath.sol",
-        "lib/forge-std/src/StdStorage.sol",
-        "lib/forge-std/src/StdStyle.sol",
-        "lib/forge-std/src/StdUtils.sol",
-        "lib/forge-std/src/Vm.sol",
-        "lib/forge-std/src/console.sol",
-        "lib/forge-std/src/console2.sol",
-        "lib/forge-std/src/interfaces/IMulticall3.sol",
-        "lib/forge-std/src/safeconsole.sol"
-      ],
-      "versionRequirement": "^0.8.13",
-      "artifacts": {
-        "CounterScript": {
-          "0.8.21+commit.d9974bed.Darwin.appleclang": "Counter.s.sol/CounterScript.json"
-        }
-      }
-    },
-    "src/VeloLpZapper.sol": {
-      "lastModificationDate": 1697814755412,
-      "contentHash": "e58dc8e15db2fd5befe928f8e1cdf33a",
-      "sourceName": "src/VeloLpZapper.sol",
+    "src/MooVeloLpZapper.sol": {
+      "lastModificationDate": 1698097967034,
+      "contentHash": "88a248c949a19c73c508c62d2e35bbd3",
+      "sourceName": "src/MooVeloLpZapper.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
@@ -1225,31 +1114,31 @@
         "lib/openzeppelin-contracts-4.7.1/contracts/utils/Address.sol",
         "lib/openzeppelin-contracts-4.7.1/contracts/utils/Context.sol"
       ],
-      "versionRequirement": "^0.8.15",
+      "versionRequirement": "^0.8.18",
       "artifacts": {
         "IBeefyVault": {
-          "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/IBeefyVault.json"
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "MooVeloLpZapper.sol/IBeefyVault.json"
         },
         "IRegistry": {
-          "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/IRegistry.json"
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "MooVeloLpZapper.sol/IRegistry.json"
         },
         "IStakingRewards": {
-          "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/IStakingRewards.json"
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "MooVeloLpZapper.sol/IStakingRewards.json"
         },
         "IYearnVault": {
-          "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/IYearnVault.json"
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "MooVeloLpZapper.sol/IYearnVault.json"
         },
         "IZap": {
-          "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/IZap.json"
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "MooVeloLpZapper.sol/IZap.json"
         },
-        "VeloLpZapper": {
-          "0.8.21+commit.d9974bed.Darwin.appleclang": "VeloLpZapper.sol/VeloLpZapper.json"
+        "MooVeloLpZapper": {
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "MooVeloLpZapper.sol/MooVeloLpZapper.json"
         }
       }
     },
     "test/Operations.t.sol": {
-      "lastModificationDate": 1697814807190,
-      "contentHash": "73d2e35b8087959a58ee9d8788d2cd3f",
+      "lastModificationDate": 1698097346385,
+      "contentHash": "18134c4217e09ab244a281efc10b4c7b",
       "sourceName": "test/Operations.t.sol",
       "solcConfig": {
         "settings": {
@@ -1305,18 +1194,89 @@
         "lib/openzeppelin-contracts-4.7.1/contracts/token/ERC20/utils/SafeERC20.sol",
         "lib/openzeppelin-contracts-4.7.1/contracts/utils/Address.sol",
         "lib/openzeppelin-contracts-4.7.1/contracts/utils/Context.sol",
-        "src/VeloLpZapper.sol"
+        "src/MooVeloLpZapper.sol",
+        "test/utils/StrategyFixture.sol"
       ],
-      "versionRequirement": "^0.8.13",
+      "versionRequirement": "^0.8.18",
       "artifacts": {
-        "CounterTest": {
-          "0.8.21+commit.d9974bed.Darwin.appleclang": "Operations.t.sol/CounterTest.json"
-        },
         "IBeefyVault": {
           "0.8.21+commit.d9974bed.Darwin.appleclang": "Operations.t.sol/IBeefyVault.json"
         },
+        "IStakingRewards": {
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "Operations.t.sol/IStakingRewards.json"
+        },
         "IYearnVault": {
           "0.8.21+commit.d9974bed.Darwin.appleclang": "Operations.t.sol/IYearnVault.json"
+        },
+        "StrategyOperationsTest": {
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "Operations.t.sol/StrategyOperationsTest.json"
+        }
+      }
+    },
+    "test/utils/StrategyFixture.sol": {
+      "lastModificationDate": 1698097576424,
+      "contentHash": "fb48795d94e28974440d0f7931e98c5f",
+      "sourceName": "test/utils/StrategyFixture.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Base.sol",
+        "lib/forge-std/src/StdAssertions.sol",
+        "lib/forge-std/src/StdChains.sol",
+        "lib/forge-std/src/StdCheats.sol",
+        "lib/forge-std/src/StdError.sol",
+        "lib/forge-std/src/StdInvariant.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/StdMath.sol",
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/StdStyle.sol",
+        "lib/forge-std/src/StdUtils.sol",
+        "lib/forge-std/src/Test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol",
+        "lib/forge-std/src/safeconsole.sol",
+        "lib/openzeppelin-contracts-4.7.1/contracts/access/Ownable.sol",
+        "lib/openzeppelin-contracts-4.7.1/contracts/token/ERC20/IERC20.sol",
+        "lib/openzeppelin-contracts-4.7.1/contracts/token/ERC20/extensions/draft-IERC20Permit.sol",
+        "lib/openzeppelin-contracts-4.7.1/contracts/token/ERC20/utils/SafeERC20.sol",
+        "lib/openzeppelin-contracts-4.7.1/contracts/utils/Address.sol",
+        "lib/openzeppelin-contracts-4.7.1/contracts/utils/Context.sol",
+        "src/MooVeloLpZapper.sol"
+      ],
+      "versionRequirement": "^0.8.18",
+      "artifacts": {
+        "StrategyFixture": {
+          "0.8.21+commit.d9974bed.Darwin.appleclang": "StrategyFixture.sol/StrategyFixture.json"
         }
       }
     }

@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: AGPL-3.0
-pragma solidity ^0.8.15;
+pragma solidity ^0.8.18;
 
 import "lib/openzeppelin-contracts-4.7.1/contracts/access/Ownable.sol";
 import "lib/openzeppelin-contracts-4.7.1/contracts/token/ERC20/IERC20.sol";
 import "lib/openzeppelin-contracts-4.7.1/contracts/token/ERC20/utils/SafeERC20.sol";
-import {Test, console2} from "forge-std/Test.sol";
+import {Test, console2} from "forge-std/Test.sol"; //@todo: remove
 
 interface IBeefyVault {
     function want() external view returns (address);
@@ -29,7 +29,7 @@ interface IZap {
     function zapIn(address _targetVault, uint256 _underlyingAmount) external returns (uint256);
 }
 
-contract VeloLpZapper is Ownable {
+contract MooVeloLpZapper is Ownable {
     using SafeERC20 for IERC20;
 
     /* ========== STATE VARIABLES ========== */
@@ -37,7 +37,7 @@ contract VeloLpZapper is Ownable {
     /// @notice LP tokens that the registry has added pairs for.
     address[] public lpTokens;
 
-    /// @notice Our OP boost zap contract.
+    /// @notice The OP boost zap contract.
     IZap public boostZapContract;
 
     /// @notice If a beefy-vault/yearn-vault pair exists for a given token, it will be shown here.
@@ -85,7 +85,7 @@ contract VeloLpZapper is Ownable {
      * @param _yearnVault The vault token from yearn.
      */
     function addPair(address _lpToken, address _beefyVault, address _yearnVault) external onlyApproved {
-        // make sure the lp token are identical for both vaults
+        // make sure the lp token is identical for both vaults
         require(IBeefyVault(_beefyVault).want() == IYearnVault(_yearnVault).token(), "lp token does not match");
 
         // set vault addresses for pair
@@ -104,11 +104,12 @@ contract VeloLpZapper is Ownable {
     function zap(address _lpToken) external {
         // get vault tokens
         address[2] memory pair = pairs[_lpToken];
+
         IERC20 mooToken = IERC20(pair[0]);
         IERC20 yearnToken = IERC20(pair[1]);
 
-        // transfer moo token to zap contract
-        uint256 mooBalance = mooToken.balanceOf(msg.sender); // @issue here!!!
+        // transfer moo token to moo zapper contract
+        uint256 mooBalance = mooToken.balanceOf(msg.sender);
         _checkAllowance(pair[0], address(mooToken), mooBalance);
         mooToken.transferFrom(msg.sender, address(this), mooBalance);
 
@@ -132,8 +133,8 @@ contract VeloLpZapper is Ownable {
 
         // the vault is boosted, need to stake
         } else {
-            _checkAllowance(address(boostZapContract), _lpToken, lpBalance);
-            boostZapContract.zapIn(pair[1], lpBalance);
+            _checkAllowance(address(boostZapContract), _lpToken, lpBalance); // @todo: issue here with approval and delegatecall 
+            (bool success, bytes memory data) = address(boostZapContract).delegatecall(abi.encodeWithSignature("zapIn(address,uint256)", pair[1], lpBalance));
             emit ZapIn(msg.sender, pair[1], lpBalance, true);
         }
     }
